@@ -1,3 +1,4 @@
+// wallet connect component
 const WalletConnect = () => {
     return (
         <h1>WalletConnect</h1>
