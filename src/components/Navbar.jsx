@@ -6,7 +6,12 @@ import logo from "../../images/logo.png";
 // navbar component
 const Navbar = () => {
     return (
-        <h1>Navbar</h1>
+        <nav className="w-full flex md:justify-center justify-between items-center p-4">
+        <div className="md:flex-[0.75] flex-initial justify-center items-center">
+          <img src={logo} alt="logo" className="w-96 cursor-pointer" />
+        </div>
+            
+        </nav>
     );
 }
 
