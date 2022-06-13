@@ -5,12 +5,12 @@ import { Navbar, About, Footer, Mint, WalletConnect, RoadMap, Transactions } fro
 const App = () => {
  return (
     <div className="min-h-screen">
-     <div className="gradient-bg-about">
+     <div className="gradient-bg-walletconnect">
        <Navbar />
-       <About />
        <WalletConnect />
       </div>
       <Mint />
+      <About />
       <RoadMap />
       <Transactions />
       <Footer />
