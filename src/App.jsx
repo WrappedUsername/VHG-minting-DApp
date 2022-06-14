@@ -12,7 +12,6 @@ const App = () => {
       <Mint />
       <About />
       <RoadMap />
-      <Transactions />
       <Footer />
     </div>
   );

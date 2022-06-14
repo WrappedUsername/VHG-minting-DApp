@@ -5,5 +5,4 @@ export { default as About } from './About';
 export { default as Footer } from './Footer';
 export { default as Mint } from './Mint';
 export { default as RoadMap } from './RoadMap';
-export { default as Transactions } from './Transactions';
 export { default as WalletConnect } from './WalletConnect';
