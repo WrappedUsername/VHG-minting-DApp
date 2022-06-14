@@ -1,5 +1,5 @@
 // import components
-import { Navbar, About, Footer, Mint, WalletConnect, RoadMap, Transactions } from './components';
+import { Navbar, About, Footer, Mint, WalletConnect, RoadMap } from './components';
 
 // minting app
 const App = () => {
