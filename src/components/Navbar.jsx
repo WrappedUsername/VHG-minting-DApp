@@ -20,7 +20,7 @@ const Navbar = () => {
         {["Mint", "About", "Road Map", "Transactions"].map((item, index) => (
           <NavBarItem key={item + index} title={item} />
         ))}
-        <li className="bg- eth-card py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
+        <li className="bg- eth-card py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#6ff2f0]">
           Connect
         </li>
       </ul>
@@ -40,7 +40,7 @@ const Navbar = () => {
             {["Mint", "About", "Road Map", "Transactions"].map(
               (item, index) => <NavBarItem key={item + index} title={item} classprops="my-2 text-lg" />,
             )}
-                <li className="bg- eth-card  py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#2546bd]">
+                <li className="bg- eth-card  py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#6ff2f0]">
                     Connect
                 </li>
           </ul>
