@@ -1,8 +1,9 @@
+
+
 // wallet connect component
 const WalletConnect = () => {
-    return (
-        <h1>WalletConnect</h1>
-    );
+    
+   <h1>Wallet Connect</h1>
 }
 
 export default WalletConnect;

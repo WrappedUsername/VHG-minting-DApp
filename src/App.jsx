@@ -7,9 +7,9 @@ const App = () => {
     <div className="min-h-screen">
      <div className="gradient-bg-walletconnect">
        <Navbar />
-       <WalletConnect />
+       <Mint />
       </div>
-      <Mint />
+      <WalletConnect />
       <About />
       <RoadMap />
       <Footer />
