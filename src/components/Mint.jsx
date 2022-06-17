@@ -1,6 +1,6 @@
 
 
-
+import cabin from "../../images/cabin&helo.png";
 
 
 // mint component
@@ -9,6 +9,10 @@ const Mint = () => {
     return (
         <div className="flex w-full justify-center items-center">
             <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
+
+        <div className="md:flex-[1.25] flex-initial justify-center items-center">
+          <img src={cabin} alt="cabin" className="w-96 cursor-pointer" />
+        </div>
                 <div className="flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10">
                     <div className="p-3 flex justify-end items-start flex-col rounded-xl h-40 sm:w-72 w-full my-5 eth-card .white-glassmorphism ">
                         <div className="flex justify-between flex-col w-full h-full">
