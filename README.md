@@ -1,15 +1,16 @@
 # Work In Progress - VHG-minting-DApp
 ## NFT minting DApp for Voxel Helos Genesis project.
 ### Sneak peak! WIP!
-![Screen Shot 2022-06-14 at 6 43 20 PM](https://user-images.githubusercontent.com/104662990/173712755-f2710e63-2fd6-4622-be1a-28f4608f0248.png)
-
-
-https://user-images.githubusercontent.com/104662990/173714279-ae9ff603-73a2-426d-b28b-f9ed13afde4d.mov
 
 
 
+https://user-images.githubusercontent.com/104662990/174422908-aa09d787-a6ea-4f64-8f97-d8f345159e14.mov
 
-https://user-images.githubusercontent.com/104662990/173732066-64e76df3-0e5d-495e-8e03-459d0fc23b9e.mov
+
+
+
+
+
 
 
 
