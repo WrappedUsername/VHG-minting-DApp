@@ -1,0 +1,16 @@
+version: "1.0"
+services:
+  ipfs:
+    image: lscr.io/linuxserver/ipfs
+    container_name: ipfs
+    environment:
+      #Work In Progress
+    volumes:
+      #Work In Progress
+    ports:
+      - 80:80
+      - 4001:4001
+      - 5001:5001
+      - 8080:8080
+      - 443:443 #optional
+    restart: unless-stopped
