@@ -1,16 +1,9 @@
-version: "1.0"
+version: "1"
 services:
-  ipfs:
-    image: lscr.io/linuxserver/ipfs
-    container_name: ipfs
-    environment:
-      #Work In Progress
-    volumes:
-      #Work In Progress
+  dapp:
+    image: wrappedusername/vhg-minting-dapp:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
     ports:
-      - 80:80
-      - 4001:4001
-      - 5001:5001
-      - 8080:8080
-      - 443:443 #optional
-    restart: unless-stopped
+      - "8080:8080"
