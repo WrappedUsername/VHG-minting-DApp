@@ -7,20 +7,25 @@ import { contractAbi, contractAddress } from "../context/constants";
 const { ethereum } = window;
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
-const contract = new ethers.Contract(contractAddress, contractAbi, signer);
 
 // mint component
 const Mint = () => {
   // mint function
   const safeMint = async () => {
     try {
-      const ethers = window.ethers;
-      const response = await fetch("/api/mint");
-      const data = await response.json();
+      // get the contract instance
+      window.contract = await new ethers.Contract(
+        contractAddress,
+        contractAbi,
+        signer
+      );
+      // get the address of the user
+      const address = await signer.getAddress();
+      // mint the token
       const price = ethers.utils.parseEther("0.05", "ether");
+      await contract.safeMint(address, price);
 
-      await contract.safeMint(data.address, price);
-      console.log(data);
+      console.log("Minted");
       return true;
     } catch (error) {
       console.log(error.message, "red");
