@@ -1,8 +1,33 @@
 import example from "../../images/example.gif";
 import cabin from "../../images/cabin&helo.png";
+import { ethers } from "ethers";
+import { contractAbi, contractAddress } from "../context/constants";
+
+// ethereum components
+const { ethereum } = window;
+const provider = new ethers.providers.Web3Provider(ethereum);
+const signer = provider.getSigner();
+const contract = new ethers.Contract(contractAddress, contractAbi, signer);
 
 // mint component
 const Mint = () => {
+  // mint function
+  const safeMint = async () => {
+    try {
+      const ethers = window.ethers;
+      const response = await fetch("/api/mint");
+      const data = await response.json();
+      const price = ethers.utils.parseEther("0.05", "ether");
+
+      await contract.safeMint(data.address, price);
+      console.log(data);
+      return true;
+    } catch (error) {
+      console.log(error.message, "red");
+      return false;
+    }
+  };
+
   return (
     <div className="flex w-full justify-center items-center gradient-bg-mint">
       <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
@@ -10,8 +35,8 @@ const Mint = () => {
           <img src={cabin} alt="cabin" className="w-100" />
           <p className="text-3xl text-white break-words text-gradient">
             {" "}
-            Voxel Helos Genesis, cabin and fuselage layers added to
-            the background layer to complete the NFT.
+            Voxel Helos Genesis, cabin and fuselage layers added to the
+            background layer to complete the NFT.
           </p>
         </div>
         <div className=" flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10 ">
@@ -21,6 +46,7 @@ const Mint = () => {
                 <button
                   type="button "
                   className="flex flex-row justify-center items-center mt-1 bg-[eth-card] p-3 rounded-full cursor-pointer hover:shadow-inner shadow-[#4dfad7] shadow-lg "
+                  onClick={safeMint}
                 >
                   <p className="text-white text-base font-semibold">Mint</p>
                 </button>
