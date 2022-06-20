@@ -1,7 +1,8 @@
 import example from "../../images/example.gif";
 import cabin from "../../images/cabin&helo.png";
 import { ethers } from "ethers";
-import { contractAbi, contractAddress } from "../context/constants";
+import { contractAbi, contractAddress, scanLink } from "../context/constants";
+import { shortenAddress } from "../utils/shortenAddress";
 
 // ethereum components
 const { ethereum } = window;
@@ -14,7 +15,7 @@ const Mint = () => {
   const safeMint = async () => {
     try {
       // get the contract instance
-      window.contract = await new ethers.Contract(
+      window.contract = new ethers.Contract(
         contractAddress,
         contractAbi,
         signer
@@ -62,7 +63,9 @@ const Mint = () => {
                   className="w-48 mr-1 rounded-xl shadow-[#4dfad7] shadow-lg"
                 />
               </div>
-              <p className="text-white font-light ml-1 text-sm">address</p>
+              <a href={scanLink} className="text-white font-light ml-1 text-sm">
+              {shortenAddress(contractAddress)}
+              </a>
               <p className="text-white font-semibold text-lg ml-1 mb-1">
                 Polygon
               </p>
