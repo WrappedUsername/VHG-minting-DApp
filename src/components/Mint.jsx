@@ -2,17 +2,15 @@ import example from "../../images/example.gif";
 import cabin from "../../images/cabin&helo.png";
 import React from "react";
 import { ethers } from "ethers";
-import { address, VoxelHelosGenesis, scanLink } from "../context/constants";
+import { address, VoxelHelosGenesis, scanLink, network } from "../context/constants";
 import { shortenAddress } from "../utils/shortenAddress";
 
 // ethereum components
 const { ethereum } = window;
+const targetNetwork = network.polygon
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
-const contractInterface = new ethers.utils.Interface(
-  VoxelHelosGenesis.abi
-);
-const contract = new ethers.Contract(address, contractInterface, signer);
+const contract = new ethers.Contract(address, VoxelHelosGenesis, signer);
 
 // mint component
 const Mint = () => {
@@ -20,6 +18,8 @@ const Mint = () => {
   const mintNFT = async () => {
     try {
       if (window.ethereum) {
+      
+
       // mint the token
       const price = ethers.utils.parseEther("0.05", "ether");
       await contract.safeMint(address, price);
