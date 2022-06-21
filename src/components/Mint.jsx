@@ -9,7 +9,7 @@ import { shortenAddress } from "../utils/shortenAddress";
 const { ethereum } = window;
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
-
+const contract = new ethers.Contract(contractAddress, contractAbi, signer);
 
 // mint component
 const Mint = () => {
@@ -17,9 +17,6 @@ const Mint = () => {
   const mintNFT = async () => {
     try {
       if (window.ethereum) {
-      const contract = new ethers.Contract(contractAddress, contractAbi, provider);
-      // get the address of the user
-      const address = await signer.getAddress();
       // mint the token
       const price = ethers.utils.parseEther("0.05", "ether");
       await contract.safeMint(address, price);
