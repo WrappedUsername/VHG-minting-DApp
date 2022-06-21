@@ -2,6 +2,12 @@ import React from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import logo from "../../images/logo.png";
+import { ethers } from "ethers";
+
+// ethereum components
+const { ethereum } = window;
+const provider = new ethers.providers.Web3Provider(ethereum);
+const signer = provider.getSigner();
 
 const NavBarItem = ({ title, classprops }) => (
   <li className={`mx-4 cursor-pointer ${classprops}`}>{title}</li>
@@ -10,6 +16,31 @@ const NavBarItem = ({ title, classprops }) => (
 // navbar component
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
+
+  // ethereum wallet connect
+  const connectWallet = async () => {
+    try {
+      if (ethereum) {
+        const accounts = await ethereum.request({
+          method: "eth_requestAccounts",
+        });
+        // get the address of the user
+        const address = await signer.getAddress();
+        // check if the user is already connected
+        if (address === accounts[0]) {
+          console.log("Already connected");
+          return true;
+        }
+        // connect the user
+        await signer.getAddress();
+        console.log("Connected");
+        return true;
+      }
+    } catch (error) {
+      console.log(error.message);
+      return false;
+    }
+  };
 
   return (
     <div className="flex relative">
@@ -21,9 +52,12 @@ const Navbar = () => {
           {["Mint", "About", "Road Map"].map((item, index) => (
             <NavBarItem key={item + index} title={item} />
           ))}
-          <li className="bg- eth-card py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#6ff2f0]">
+          <button
+            className="bg- eth-card py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#6ff2f0]"
+            onClick={connectWallet}
+          >
             Connect
-          </li>
+          </button>
         </ul>
 
         <div className="flex relative">
@@ -56,9 +90,11 @@ const Navbar = () => {
                   classprops="my-2 text-lg"
                 />
               ))}
-              <li className="bg- eth-card  py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#6ff2f0]">
+              <button className="bg- eth-card  py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#6ff2f0]"
+                onClick={connectWallet}
+              >
                 Connect
-              </li>
+              </button>
             </ul>
           )}
         </div>

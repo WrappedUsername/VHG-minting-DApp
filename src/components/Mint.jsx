@@ -1,5 +1,6 @@
 import example from "../../images/example.gif";
 import cabin from "../../images/cabin&helo.png";
+import React from "react";
 import { ethers } from "ethers";
 import { contractAbi, contractAddress, scanLink } from "../context/constants";
 import { shortenAddress } from "../utils/shortenAddress";
@@ -9,29 +10,28 @@ const { ethereum } = window;
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 
+
 // mint component
 const Mint = () => {
   // mint function
-  const safeMint = async () => {
+  const mintNFT = async () => {
     try {
-      // get the contract instance
-      window.contract = new ethers.Contract(
-        contractAddress,
-        contractAbi,
-        signer
-      );
+      if (window.ethereum) {
+      const contract = new ethers.Contract(contractAddress, contractAbi, provider);
       // get the address of the user
       const address = await signer.getAddress();
       // mint the token
       const price = ethers.utils.parseEther("0.05", "ether");
       await contract.safeMint(address, price);
-
+      // show the success message
       console.log("Minted");
       return true;
+      }
     } catch (error) {
-      console.log(error.message, "red");
+      console.log(error.message);
       return false;
     }
+  
   };
 
   return (
@@ -52,7 +52,7 @@ const Mint = () => {
                 <button
                   type="button "
                   className="flex flex-row justify-center items-center mt-1 bg-[eth-card] p-3 rounded-full cursor-pointer hover:shadow-inner shadow-[#4dfad7] shadow-lg "
-                  onClick={safeMint}
+                  onClick={mintNFT}
                 >
                   <p className="text-white text-base font-semibold">Mint</p>
                 </button>
@@ -64,7 +64,7 @@ const Mint = () => {
                 />
               </div>
               <a href={scanLink} className="text-white font-light ml-1 text-sm">
-              {shortenAddress(contractAddress)}
+                {shortenAddress(contractAddress)}
               </a>
               <p className="text-white font-semibold text-lg ml-1 mb-1">
                 Polygon
