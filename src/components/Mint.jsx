@@ -2,13 +2,12 @@ import example from "../../images/example.gif";
 import cabin from "../../images/cabin&helo.png";
 import React from "react";
 import { ethers } from "ethers";
+import { fetch } from "node-fetch";
 import { address, scanLink } from "../context/constants";
 import { shortenAddress } from "../utils/shortenAddress";
 
 // ethereum components
 const { ethereum } = window;
-const ethers = require("ethers");
-const fetch = require("node-fetch");
 const signer = provider.getSigner();
 // obtain contract abi
 // make an API call to the abi endpoint
