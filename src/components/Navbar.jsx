@@ -18,7 +18,7 @@ const NavBarItem = ({ title, classprops }) => (
 const Navbar = () => {
   const [toggleMenu, setToggleMenu] = React.useState(false);
 
-  // ethereum wallet connect
+  // ethereum wallet connect, this works
   const connectWallet = async () => {
     try {
       if (ethereum) {

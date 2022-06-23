@@ -11,18 +11,15 @@ const { ethereum } = window;
 
 const signer = provider.getSigner();
 
-
 // mint component
 const Mint = () => {
- 
-
-  // mint function
+  // mint function, not working, WIP
   const mintNFT = async () => {
     // initiate contract instance, WIP
-    
+
     // mint the token, WIP
     // const price = .utils.("0.05", "ether"); // change to web3.js utils, WIP
-    await contract.safeMint(address, price);
+    // await contract.safeMint(); // needs work, WIP
 
     // show the success message
     console.log("Minted");
