@@ -21,7 +21,7 @@ const Mint = () => {
     // initiate contract instance, WIP
     
     // mint the token, WIP
-    const price = .utils.("0.05", "ether"); // change to web3.js utils, WIP
+    // const price = .utils.("0.05", "ether"); // change to web3.js utils, WIP
     await contract.safeMint(address, price);
 
     // show the success message
