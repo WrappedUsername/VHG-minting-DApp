@@ -2,12 +2,12 @@ import React from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import logo from "../../images/logo.png";
-
+import { ethers } from "ethers";
 
 // ethereum components
 const { ethereum } = window;
 // web3 provider, WIP
-
+const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 
 const NavBarItem = ({ title, classprops }) => (
