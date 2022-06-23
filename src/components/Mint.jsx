@@ -1,52 +1,32 @@
 import example from "../../images/example.gif";
 import cabin from "../../images/cabin&helo.png";
 import React from "react";
-import { ethers } from "ethers";
-import { fetch } from "node-fetch";
-import { address, scanLink } from "../context/constants";
+// web3.js, WIP
+import { address, VoxelHelosGenesis, scanLink } from "../context/constants";
 import { shortenAddress } from "../utils/shortenAddress";
 
 // ethereum components
 const { ethereum } = window;
+// web3 provider, WIP
+
 const signer = provider.getSigner();
-// obtain contract abi
-// make an API call to the abi endpoint
-const response = await fetch(
-  "https://api.polygonscan.com/api?module=contract&action=getabi&address=0x1b692f5A01924A08772e4f10Be8992CACdeb45Cd&apikey=${process.env.POLYGONSCAN_API_KEY}"
-);
-const data = await response.json();
 
-// print the JSON response
-let abi = data.result;
-console.log(abi);
-
-// creating a new provider and passing in node URL
-const node =
-  "wss://polygon-mainnet.g.alchemy.com/v2/${process.env.ALCHEMY_API_KEY}";
-const provider = new ethers.providers.WebSocketProvider(node);
-
-// initiate contract instance
-let contract = new ethers.Contract(address, abi, signer);
 
 // mint component
 const Mint = () => {
+ 
+
   // mint function
   const mintNFT = async () => {
-    try {
-      if (window.ethereum) {
-        // mint the token
-        const price = ethers.utils.parseEther("0.05", "ether");
-        let write = await contract.safeMint(address, price);
+    // initiate contract instance, WIP
+    
+    // mint the token, WIP
+    const price = .utils.("0.05", "ether"); // change to web3.js utils, WIP
+    await contract.safeMint(address, price);
 
-        write.wait(2);
-        // show the success message
-        console.log("Minted");
-        return true;
-      }
-    } catch (error) {
-      console.log(error.message);
-      return false;
-    }
+    // show the success message
+    console.log("Minted");
+    return true;
   };
 
   return (

@@ -2,11 +2,12 @@ import React from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import logo from "../../images/logo.png";
-import { ethers } from "ethers";
+
 
 // ethereum components
 const { ethereum } = window;
-const provider = new ethers.providers.Web3Provider(ethereum);
+// web3 provider, WIP
+
 const signer = provider.getSigner();
 
 const NavBarItem = ({ title, classprops }) => (
@@ -90,7 +91,8 @@ const Navbar = () => {
                   classprops="my-2 text-lg"
                 />
               ))}
-              <button className="bg- eth-card  py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#6ff2f0]"
+              <button
+                className="bg- eth-card  py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#6ff2f0]"
                 onClick={connectWallet}
               >
                 Connect
