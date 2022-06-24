@@ -1,6 +1,7 @@
 # Work In Progress - VHG-minting-DApp
 ## NFT minting DApp for Voxel Helos Genesis project.
-### Sneak peak! WIP!
+### Sneak peak! WIP! I got the connect wallet button to work, but...
+#### Mint button is not working now I broke something may need to refactor.
 
 
 
