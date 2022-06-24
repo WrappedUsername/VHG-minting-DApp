@@ -1,32 +1,22 @@
 import example from "../../images/example.gif";
 import cabin from "../../images/cabin&helo.png";
 import React from "react";
-// web3.js, WIP
-import Web3 from "web3";
+import { ethers } from "ethers";
 import { address, abi, scanLink } from "../context/constants";
 import { shortenAddress } from "../utils/shortenAddress";
 
 // ethereum components
 const { ethereum } = window;
-// web3 provider, WIP
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 
 // mint component
 const Mint = () => {
-  // mint function, not working, WIP
+  
   const mintNFT = async () => {
-    // initiate contract instance, WIP
-    const VoxelHelosGenesis = new Web3.eth.Contract(abi, address, signer);
-    // mint the token, WIP
-    VoxelHelosGenesis.methods.price().call();
-    VoxelHelosGenesis.methods.safeMint().call();
-    // const price = .utils.("0.05", "ether"); // change to web3.js utils, WIP
-    // await contract.safeMint(); // needs work, WIP
+    // mint function, not working, WIP
+    const VoxelHelosGenesis = new ethers.Contract(address, abi, signer);
 
-    // show the success message
-    console.log("Minted");
-    return true;
   };
 
   return (
