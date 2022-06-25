@@ -2,20 +2,46 @@ import example from "../../images/example.gif";
 import cabin from "../../images/cabin&helo.png";
 import React from "react";
 import { ethers } from "ethers";
-import { address, abi, scanLink } from "../context/constants";
+import { address, scanLink } from "../context/constants";
 import { shortenAddress } from "../utils/shortenAddress";
 
-// ethereum components
+// web3 provider, working!
 const { ethereum } = window;
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
+
+// contract abi, WIP
+const abi = [
+  // no errors, not displaying count
+  {
+    "inputs": [],
+    "name": "_tokenIdCounter",
+    "outputs": [
+      { "internalType": "uint256", "name": "_value", "type": "uint256" }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }, 
+];
+
+// get contract instance, working!
+const VoxelHelosGenesis = new ethers.Contract(address, abi, signer);
 
 // mint component
 const Mint = () => {
   
   const mintNFT = async () => {
-    // mint function, not working, WIP
-    const VoxelHelosGenesis = new ethers.Contract(address, abi, signer);
+    
+    // test _tokenIdCounter function
+    // no errors, not displaying count
+    const _tokenIdCounter = await VoxelHelosGenesis._tokenIdCounter();
+    
+    console.log('token id count: ${_tokenIdCounter}'); 
+
+    // mint function, WIP
+    // const safeMint = await VoxelHelosGenesis.safeMint();
+
+    // console.log('minted: ${safeMint}');
 
   };
 
