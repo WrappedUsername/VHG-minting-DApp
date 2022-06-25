@@ -4,9 +4,8 @@ import { AiOutlineClose } from "react-icons/ai";
 import logo from "../../images/logo.png";
 import { ethers } from "ethers";
 
-// ethereum components
+// web3 provider, working!
 const { ethereum } = window;
-// web3 provider, WIP
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 
