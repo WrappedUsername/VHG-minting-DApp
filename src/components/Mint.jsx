@@ -10,18 +10,18 @@ const { ethereum } = window;
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 
-// contract abi, WIP
+// contract abi, working now!
 const abi = [
-  // no errors, not displaying count
+  // solidity json abi
   {
-    "inputs": [],
-    "name": "_tokenIdCounter",
-    "outputs": [
-      { "internalType": "uint256", "name": "_value", "type": "uint256" }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  }, 
+    inputs: [],
+    name: "_tokenIdCounter",
+    outputs: [{ internalType: "uint256", name: "_value", type: "uint256" }],
+    stateMutability: "view",
+    type: "function",
+  },
+  // human-readable abi
+  "function safeMint(address to, uint256 _price)"
 ];
 
 // get contract instance, working!
@@ -29,20 +29,20 @@ const VoxelHelosGenesis = new ethers.Contract(address, abi, signer);
 
 // mint component
 const Mint = () => {
-  
+  // _tokenIdCounter function
+  // no errors, but not displaying count
+  // const _tokenIdCounter = await VoxelHelosGenesis._tokenIdCounter();
+  // make this into current count/max supply display
+  // console.log('token id count: ${_tokenIdCounter}'); // probably needs work
+
+  // mint function, WIP
   const mintNFT = async () => {
-    
-    // test _tokenIdCounter function
-    // no errors, not displaying count
-    const _tokenIdCounter = await VoxelHelosGenesis._tokenIdCounter();
-    
-    console.log('token id count: ${_tokenIdCounter}'); 
+    const safeMint = await VoxelHelosGenesis.safeMint({
+      // to: "signer", // this needs to be fixed
+      value: ethers.utils.parseEther("0.05"),
+    });
 
-    // mint function, WIP
-    // const safeMint = await VoxelHelosGenesis.safeMint();
-
-    // console.log('minted: ${safeMint}');
-
+    console.log("minted: ${safeMint}"); // probably needs work
   };
 
   return (
