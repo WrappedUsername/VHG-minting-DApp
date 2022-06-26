@@ -20,8 +20,15 @@ const abi = [
     stateMutability: "view",
     type: "function",
   },
+  {
+    inputs: [],
+    name: "price",
+    outputs: [{ "internalType": "uint256", "name": "", "type": "uint256" }],
+    stateMutability: "view",
+    type: "function"
+  },
   // human-readable abi
-  "function safeMint(address to, uint256 _price)"
+  "function safeMint(address to, uint256 _price)",
 ];
 
 // get contract instance, working!
@@ -37,11 +44,19 @@ const Mint = () => {
 
   // mint function, WIP
   const mintNFT = async () => {
-    const safeMint = await VoxelHelosGenesis.safeMint({
-      // to: "signer", // this needs to be fixed
-      value: ethers.utils.parseEther("0.05"),
-    });
+    // Error: value must be a string, fixed!
+    const decimals = 18;
+    // Error: invalid BigNumber value (argument="value", value={"value":"0.05"},
+    // I tried to change the decimals did not work
+    const _price = ethers.utils.parseUnits('0.05', decimals);
+    const price = ethers.utils.formatUnits(_price, decimals);
 
+    const safeMint = await VoxelHelosGenesis.safeMint(
+      // this arg is working!
+      signer.getAddress(),
+      // Error: value must be a string, fixed!
+      {value: price}); 
+  
     console.log("minted: ${safeMint}"); // probably needs work
   };
 
