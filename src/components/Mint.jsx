@@ -7,7 +7,10 @@ import { shortenAddress } from "../utils/shortenAddress";
 
 // web3 provider, working!
 const { ethereum } = window;
+// Error: invalid BigNumber value (argument="value", value={"value":"0.05"}, code=INVALID_ARGUMENT
 const provider = new ethers.providers.Web3Provider(ethereum);
+// Error: unknown account #0 (operation="getAddress", code=UNSUPPORTED_OPERATION,
+// const provider = new ethers.providers.JsonRpcProvider('https://polygon-mainnet.infura.io/v3/INFURA_API_KEY');
 const signer = provider.getSigner();
 
 // contract abi, working now!
@@ -41,9 +44,21 @@ const Mint = () => {
   // const _tokenIdCounter = await VoxelHelosGenesis._tokenIdCounter();
   // make this into current count/max supply display
   // console.log('token id count: ${_tokenIdCounter}'); // probably needs work
+  
 
   // mint function, WIP
   const mintNFT = async () => {
+    // creates MetaMask - RPC Error: Internal JSON-RPC error
+    // going to try to use JsonRpcProvider
+    // Uncaught (in promise) Error: unknown account #0 
+    // (operation="getAddress", code=UNSUPPORTED_OPERATION, version=providers/5.6.8)
+    // when using JsonRpcProvider
+    // Error: invalid BigNumber value (argument="value", value={"value":"0.05"},
+    // when using Web3Provider
+    const price = await VoxelHelosGenesis.price(); // logged {value: BigNumber}
+    const _price = ethers.utils.formatEther(price) // logged {value: '0.05'}
+    console.log({ value: _price });
+
     // Error: value must be a string, fixed!
     // Error: invalid BigNumber value (argument="value", value={"value":"0.05"},
     // const decimals = 18; // not working
@@ -55,19 +70,20 @@ const Mint = () => {
     // new error with price function from contract
     // BigNumber {_hex: '0xb1a2bc2ec50000', _isBigNumber: true}
     // Error: invalid BigNumber value (argument="value", value={"value":{"type":"BigNumber","hex":"0xb1a2bc2ec50000"}},
-    const _price = await VoxelHelosGenesis.price();  // not working
-    const price = ethers.utils.formatEther(_price); // not working
+    // const _price = await VoxelHelosGenesis.price();  // not working
+    // const price = ethers.utils.formatEther(_price); // not working
     // logs price in console before error
     // Error: invalid BigNumber value (argument="value", value={"value":"0.05"},
-    console.log(price);
+    // console.log(price);
 
     await VoxelHelosGenesis.safeMint(
       // this arg is working!
       signer.getAddress(),
+      // console.log({value: price}),
       // Error: value must be a string, fixed!
       // Error: invalid BigNumber value (argument="value", value={"value":"0.05"},
-      { value: price });
-    
+      { value: _price });
+
       console.log("minted: ${safeMint}"); // probably needs work
   };
 
