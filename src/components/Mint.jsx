@@ -36,39 +36,39 @@ const VoxelHelosGenesis = new ethers.Contract(address, abi, signer);
 
 // mint component
 const Mint = () => {
+
   // _tokenIdCounter function
-  // no errors, but not displaying count
-  // const _tokenIdCounter = await VoxelHelosGenesis._tokenIdCounter();
   // make this into current count/max supply display
-  // console.log('token id count: ${_tokenIdCounter}'); // probably needs work
+  // const tokenIdCounter = await VoxelHelosGenesis._tokenIdCounter();
+  // const count = ethers.utils.formatUnits(tokenIdCounter, 0);
+  // console.log("minted:", count);
   
   // mint function, WIP
   const mintNFT = async () => {
     
     const tokenIdCounter = await VoxelHelosGenesis._tokenIdCounter();
-    const _tokenIdCounter = ethers.utils.formatEther(tokenIdCounter)
-    // {value: '0.000000000000000105'} // this should be '105'
-    console.log({value: _tokenIdCounter}); 
-    // tested this log, its close needs work, this should be minted: 105
-    // currently, minted: 0.000000000000000105 BigNumber needs fixed
-    console.log("minted:", _tokenIdCounter); 
+    const count = ethers.utils.formatUnits(tokenIdCounter, 0);
+    // tested this log, its close needs work, this should be minted: 105, fixed!
+    // was minted: 0.000000000000000105 
+    // update now its minted: 105
+    console.log("minted:", count); 
     
-    const price = await VoxelHelosGenesis.price(); // logged {value: BigNumber}
-    const _price = ethers.utils.formatEther(price) // logged {value: '0.05'}
-    // {value: '0.05'} // this should be 50000000000000000
+    const price = await VoxelHelosGenesis.price();
+    const _price = ethers.utils.formatUnits(price, 0);
+    // Error: value must be a string, fixed!
+    // Error: invalid BigNumber value (argument="value", value={"value":"0.05"},
+    // this should be 50000000000000000
+    // was {value: '0.05'}, now it's {value: '50000000000000000'}, but
+    // Error: invalid BigNumber value (argument="value", value={"value":"50000000000000000"},
     console.log({ value: _price });
 
     await VoxelHelosGenesis.safeMint(
-      // this arg is working!
+
       signer.getAddress(),
-      // Error: value must be a string, fixed!
-      // Error: invalid BigNumber value (argument="value", value={"value":"0.05"},
-      // this should be 50000000000000000
-      // currently, {value: '0.05'} 
-      { value: _price });
-      // close, this needs work, this should be minted: 105
-      // currently, minted: 0.000000000000000105
-      console.log("minted:", _tokenIdCounter); 
+
+      { value: _price }); // this is not working
+      
+      console.log("minted:", count); 
   };
 
   return (
