@@ -49,13 +49,19 @@ const Mint = () => {
     // const decimals = 18; // not working
     // I tried to change the decimals did not work
     // const _price = ethers.utils.parseUnits('0.05', decimals); // not working
-    const _price = ethers.BigNumber.from("50000000000000000");
-    // const _price = ethers.utils.parseEther("0.05"); // did not work
-    const price = ethers.utils.formatEther(_price);
+    // const _price = ethers.BigNumber.from("50000000000000000"); // not working
+    // const _price = ethers.utils.parseEther("0.05");  // not working
+    // const price = ethers.utils.formatEther(_price);  // not working
+    // new error with price function from contract
+    // BigNumber {_hex: '0xb1a2bc2ec50000', _isBigNumber: true}
+    // Error: invalid BigNumber value (argument="value", value={"value":{"type":"BigNumber","hex":"0xb1a2bc2ec50000"}},
+    const _price = await VoxelHelosGenesis.price();  // not working
+    const price = ethers.utils.formatEther(_price); // not working
     // logs price in console before error
+    // Error: invalid BigNumber value (argument="value", value={"value":"0.05"},
     console.log(price);
 
-    const safeMint = await VoxelHelosGenesis.safeMint(
+    await VoxelHelosGenesis.safeMint(
       // this arg is working!
       signer.getAddress(),
       // Error: value must be a string, fixed!
