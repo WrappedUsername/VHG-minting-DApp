@@ -69,7 +69,7 @@ const Mint = () => {
       _price, 
       // this is working, getting gas estimate error, fixed!
       // working, but price is too high 60000000 MATIC, needs work
-      { gasLimit: 2000000000000000 } 
+      { gasLimit: 2000000000000000 }, 
     );
     
     console.log("minted:", count);
