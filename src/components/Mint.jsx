@@ -36,23 +36,23 @@ const VoxelHelosGenesis = new ethers.Contract(address, abi, signer);
 
 // mint component
 const Mint = () => {
-
   // _tokenIdCounter function
   // make this into current count/max supply display
   // const tokenIdCounter = await VoxelHelosGenesis._tokenIdCounter();
   // const count = ethers.utils.formatUnits(tokenIdCounter, 0);
   // console.log("minted:", count);
-  
+
   // mint function, WIP
   const mintNFT = async () => {
-    
+
     const tokenIdCounter = await VoxelHelosGenesis._tokenIdCounter();
     const count = ethers.utils.formatUnits(tokenIdCounter, 0);
     // tested this log, its close needs work, this should be minted: 105, fixed!
-    // was minted: 0.000000000000000105 
+    // was minted: 0.000000000000000105
     // update now its minted: 105
-    console.log("minted:", count); 
-    
+    console.log("minted:", count);
+
+    // const price = '50000000000000000' wei
     const price = await VoxelHelosGenesis.price();
     const _price = ethers.utils.formatUnits(price, 0);
     // Error: value must be a string, fixed!
@@ -63,12 +63,16 @@ const Mint = () => {
     console.log({ value: _price });
 
     await VoxelHelosGenesis.safeMint(
-
+      
       signer.getAddress(),
 
-      { value: _price }); // this is not working
-      
-      console.log("minted:", count); 
+      _price, 
+      // this is working, getting gas estimate error, fixed!
+      // working, but price is too high 60000000 MATIC, needs work
+      { gasLimit: 2000000000000000 } 
+    );
+    
+    console.log("minted:", count);
   };
 
   return (
