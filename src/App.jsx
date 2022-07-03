@@ -4,7 +4,6 @@ import {
   About,
   Footer,
   Mint,
-  WalletConnect,
   RoadMap,
 } from "./components";
 
@@ -14,7 +13,6 @@ const App = () => {
     <div>
       <Navbar />
       <Mint />
-      <WalletConnect />
       <About />
       <RoadMap />
       <Footer />

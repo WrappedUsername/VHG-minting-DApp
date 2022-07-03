@@ -42,7 +42,7 @@ const Mint = () => {
   // const count = ethers.utils.formatUnits(tokenIdCounter, 0);
   // console.log("minted:", count);
 
-  // mint function, WIP
+  // mint function, working!
   const mintNFT = async () => {
 
     const tokenIdCounter = await VoxelHelosGenesis._tokenIdCounter();
@@ -65,7 +65,7 @@ const Mint = () => {
     await VoxelHelosGenesis.safeMint(
       
       signer.getAddress(),
-
+      // fixed this removed { value: _price }, now working!
       _price, 
       // this is working, getting gas estimate error, fixed!
       // working, but price is too high 60000000 MATIC, needs work, fixed!
