@@ -71,9 +71,11 @@ const Footer = () => {
           // size does not change when md:text-sm applied or removed, very large on small screens :(
           className="md:flex flex-[0.15] justify-center items-center my-4 cursor-pointer"
         >
-          <img // I am not sure I can change the badge to make it look the way I want. 
+          <img // I am not sure I can change the badge to make the size I want. 
             src="https://storage.googleapis.com/opensea-static/Logomark/OpenSea-Full-Logo%20(light).svg"
             alt="Available on OpenSea"
+            // This fixed the size issues described above.
+            className="w-32"
           />
         </a>
       </div>

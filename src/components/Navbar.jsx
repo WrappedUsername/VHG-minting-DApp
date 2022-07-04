@@ -55,7 +55,7 @@ const Navbar = () => {
             <NavBarItem key={item + index} title={item} />
           ))}
           <button
-            className="bg- eth-card py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#6ff2f0]"
+            className="bg- eth-card py-2 px-7 mx-4 rounded-full shadow-[#4dfad7] shadow-lg cursor-pointer hover:bg-[#6ff2f0]"
             onClick={connectWallet}
           >
             Connect
