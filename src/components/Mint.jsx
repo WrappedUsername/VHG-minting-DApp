@@ -37,7 +37,7 @@ const VoxelHelosGenesis = new ethers.Contract(address, abi, signer);
 // mint component
 const Mint = () => {
   // _tokenIdCounter function
-  // make this into current count/max supply display
+  // WIP, make this into current count/max supply display
   // const tokenIdCounter = await VoxelHelosGenesis._tokenIdCounter();
   // const count = ethers.utils.formatUnits(tokenIdCounter, 0);
   // console.log("minted:", count);

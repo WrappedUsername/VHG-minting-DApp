@@ -1,5 +1,7 @@
 import React from "react";
 import logo from "../../images/logo.png";
+import { FaDiscord, FaGithub } from "react-icons/fa";
+import { discordLink, githubLink } from "../context/constants";
 // import { Link, animateScroll, Scroll as scroll } from "react-scroll";
 
 const NavBarItem = ({ title, classprops }) => (
@@ -8,13 +10,13 @@ const NavBarItem = ({ title, classprops }) => (
 
 // footer component
 const Footer = () => {
-  // react-scroll function
+  // WIP, react-scroll function
   /*
   scrollToTop = () => {
     scroll.scrollToTop();
   };
   */
-  // react-scroll html
+  // WIP, react-scroll html
   /* 
   <Link
   activeClass="active"
@@ -34,7 +36,7 @@ const Footer = () => {
             src={logo}
             alt="logo"
             className="w-48 cursor-pointer scroll-smooth"
-            // react-scroll to function
+            // WIP, react-scroll to function
             // onClick={scrollToTop}
           />
         </div>
@@ -49,6 +51,18 @@ const Footer = () => {
             <NavBarItem key={item + index} title={item} />
           ))}
         </ul>
+
+        <FaDiscord
+          icon="FaDiscord"
+          className="text-white md:flex flex-[0.15]  text-2xl justify-center items-center my-4 cursor-pointer"
+          onClick={() => discordLink()} // WIP, error discordLink is not a function
+        />
+
+        <FaGithub
+          icon="FaGithub"
+          className="text-white md:flex flex-[0.15]  text-2xl justify-center items-center my-4 cursor-pointer"
+          onClick={() => githubLink()} // WIP, error githubLink is not a function
+        />
       </div>
     </div>
   );
