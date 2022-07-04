@@ -60,16 +60,17 @@ const Mint = () => {
     // this should be 50000000000000000
     // was {value: '0.05'}, now it's {value: '50000000000000000'}, but
     // Error: invalid BigNumber value (argument="value", value={"value":"50000000000000000"},
+    // fixed below _price
     console.log({ value: _price });
 
     await VoxelHelosGenesis.safeMint(
       
       signer.getAddress(),
-      // fixed this removed { value: _price }, now working!
+      // fixed the BigNumber error, removed { value: _price }, now working!
       _price, 
       // this is working, getting gas estimate error, fixed!
       // working, but price is too high 60000000 MATIC, needs work, fixed!
-      // fixed now 119.75603572 MATIC = around 0.5 ether
+      // fixed now 119.75603572 MATIC, needs to require .05 ether
       { gasLimit: 3000000000 },  
     );
     
