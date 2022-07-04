@@ -79,7 +79,7 @@ const Mint = () => {
 
   return (
     <div className="flex w-full justify-center items-center gradient-bg-mint">
-      <div className="flex mf:flex-row flex-col items-start justify-between md:p-20 py-12 px-4">
+      <div className="flex flex-col items-start justify-between md:p-20 py-12 px-4">
         <div className=" flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10 ">
           <img src={cabin} alt="cabin" className="w-100" />
           <p className="text-3xl text-white break-words text-gradient">
@@ -106,10 +106,10 @@ const Mint = () => {
                   className="w-48 mr-1 rounded-xl shadow-[#4dfad7] shadow-lg"
                 />
               </div>
-              <a href={scanLink} className="text-white font-light ml-1 text-sm">
+              <a href={scanLink} className="text-white font-light ml-1 text-sm w-1/4">
                 {shortenAddress(address)}
               </a>
-              <p className="text-white font-semibold text-lg ml-1 mb-1">
+              <p className="text-white font-semibold text-lg ml-1 mb-2 w-1/4">
                 Polygon
               </p>
             </div>

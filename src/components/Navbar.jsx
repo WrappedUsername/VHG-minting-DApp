@@ -89,11 +89,11 @@ const Navbar = () => {
                 <NavBarItem
                   key={item + index}
                   title={item}
-                  classprops="my-2 text-lg"
+                  classprops="flex-[0.10] my-4 mx-4 text-lg"
                 />
               ))}
               <button
-                className="bg- eth-card  py-2 px-7 mx-4 rounded-full cursor-pointer hover:bg-[#6ff2f0]"
+                className="md:flex bg- eth-card py-2 px-7 mx-4 rounded-full shadow-[#4dfad7] shadow-lg cursor-pointer hover:bg-[#6ff2f0]"
                 onClick={connectWallet}
               >
                 Connect
