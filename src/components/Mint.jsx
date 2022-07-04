@@ -83,7 +83,6 @@ const Mint = () => {
         <div className=" flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10 ">
           <img src={cabin} alt="cabin" className="w-100" />
           <p className="text-3xl text-white break-words text-gradient">
-            {" "}
             Voxel Helos Genesis, cabin and fuselage layers added to the
             background layer to complete the NFT.
           </p>
