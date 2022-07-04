@@ -52,17 +52,29 @@ const Footer = () => {
           ))}
         </ul>
 
-        <FaDiscord
-          icon="FaDiscord"
-          className="text-white md:flex flex-[0.15]  text-2xl justify-center items-center my-4 cursor-pointer"
-          onClick={() => discordLink()} // WIP, error discordLink is not a function
-        />
+        <a
+          href={discordLink} // Working!
+          className="text-white md:flex flex-[0.10] text-2xl justify-center items-center my-4 cursor-pointer"
+        >
+          <FaDiscord icon="FaDiscord" />
+        </a>
 
-        <FaGithub
-          icon="FaGithub"
-          className="text-white md:flex flex-[0.15]  text-2xl justify-center items-center my-4 cursor-pointer"
-          onClick={() => githubLink()} // WIP, error githubLink is not a function
-        />
+        <a
+          href={githubLink} // Working!
+          className="text-white md:flex flex-[0.20] text-2xl justify-center items-center my-4 cursor-pointer"
+        >
+          <FaGithub icon="FaGithub" />
+        </a>
+
+        <a
+          href="https://opensea.io/collection/voxel-helos-genesis" // Working! Could use some more work.
+          className="text-white text-xs md:flex flex-[0.15] justify-center items-center my-4 cursor-pointer"
+        >
+          <img // I am not sure I can change the badge to make it look the way I want, WIP? 
+            src="https://storage.googleapis.com/opensea-static/Logomark/Badge%20-%20Available%20On%20-%20BW.png"
+            alt="Available on OpenSea"
+          />
+        </a>
       </div>
     </div>
   );
