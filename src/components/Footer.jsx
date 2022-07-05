@@ -2,7 +2,6 @@ import React from "react";
 import logo from "../../images/logo.png";
 import { FaDiscord, FaGithub } from "react-icons/fa";
 import { discordLink, githubLink } from "../context/constants";
-// import { Link, animateScroll, Scroll as scroll } from "react-scroll";
 
 const NavBarItem = ({ title, classprops }) => (
   <li className={`mx-4 cursor-pointer ${classprops}`}>{title}</li>
@@ -10,24 +9,7 @@ const NavBarItem = ({ title, classprops }) => (
 
 // footer component
 const Footer = () => {
-  // WIP, react-scroll function
-  /*
-  scrollToTop = () => {
-    scroll.scrollToTop();
-  };
-  */
-  // WIP, react-scroll html
-  /* 
-  <Link
-  activeClass="active"
-  to="mint"
-  spy={true}
-  smooth={true}
-  offset={-70}
-  duration={500}
-  ></Link>
-*/
-
+  
   return (
     <div className="w-full flex md:justify-center justify-between items-center flex-col p-4 gradient-bg-footer">
       <div className="w-full flex sm:flex-row flex-col justify-between items-center my-4">
@@ -36,7 +18,7 @@ const Footer = () => {
             src={logo}
             alt="logo"
             className="w-48 cursor-pointer scroll-smooth"
-            // WIP, react-scroll to function
+            // WIP
             // onClick={scrollToTop}
           />
         </div>

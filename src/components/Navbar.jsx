@@ -3,7 +3,6 @@ import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import logo from "../../images/logo.png";
 import { ethers } from "ethers";
-// import { Link, animateScroll as scroll } from "react-scroll";
 
 // web3 provider, working!
 const { ethereum } = window;
@@ -45,7 +44,7 @@ const Navbar = () => {
 
   return (
     
-    <div className="flex relative">
+    <div className="relative">
       <div className="z-100 fixed top-0 w-screen flex md:justify-center justify-between items-center p-4 gradient-bg-navbar">
         <div className="md:flex-[0.75] flex-initial justify-center items-center">
           <img src={logo} alt="logo" className="w-96 cursor-pointer" />

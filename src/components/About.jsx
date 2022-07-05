@@ -1,3 +1,5 @@
+import React from "react"
+
 // about component
 const About = () => {
   return (
@@ -7,7 +9,7 @@ const About = () => {
           Meet the team! Currently Voxel Helos Genesis is a one person project.
         </p>
 
-        <figure className="bg-blue-glassmorphism md:flex rounded-xl p-8 md:p-0 ">
+        <figure className="md:flex rounded-xl p-8 md:p-0 ">
           <img
             className="flex w-auto h-auto md:w-48 h-64 rounded-[14px] md:rounded-[14px] shadow-[#4dfad7] shadow-lg mx-auto"
             src="../images/WrappedUsername.png"
@@ -35,7 +37,7 @@ const About = () => {
               </p>
             </blockquote>
             <figcaption className="font-medium">
-              <div class="text-[#4dfad7]">WrappedUsername</div>
+              <div className="text-[#4dfad7]">WrappedUsername</div>
               <div className="text-white text-gradient">
                 Full-Stack Blockchain Developer/Solidity Security Specialist
               </div>
