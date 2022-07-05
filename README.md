@@ -16,3 +16,11 @@
 
 ### Top of mint section and navbar
 ![Screen Shot 2022-07-05 at 12 07 41 AM](https://user-images.githubusercontent.com/104662990/177260740-417e5c1a-04b5-4e0b-ab29-d54c1c67ce39.png)
+
+
+### Responsive design, mobile menu
+![Screen Shot 2022-07-05 at 12 25 42 AM](https://user-images.githubusercontent.com/104662990/177263244-d089584d-586a-4511-8971-52a1c5a274ba.png)
+
+
+### Responsive design, footer section, hidden menu
+![Screen Shot 2022-07-05 at 12 24 53 AM](https://user-images.githubusercontent.com/104662990/177263388-0c3501eb-90e9-48cb-b2bb-9c2263392f73.png)
