@@ -1,13 +1,7 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { HiMenuAlt4 } from "react-icons/hi";
 import { AiOutlineClose } from "react-icons/ai";
 import logo from "../../images/logo.png";
-import { ethers } from "ethers";
-
-// web3 provider, working!
-const { ethereum } = window;
-const provider = new ethers.providers.Web3Provider(ethereum);
-const signer = provider.getSigner();
 
 const NavBarItem = ({ title, classprops }) => (
   <li className={`mx-4 cursor-pointer ${classprops}`}>{title}</li>
@@ -15,35 +9,98 @@ const NavBarItem = ({ title, classprops }) => (
 
 // navbar component
 const Navbar = () => {
-  const [toggleMenu, setToggleMenu] = React.useState(false);
+  const [toggleMenu, setToggleMenu] = useState(false);
+  const [walletAddress, setWallet] = useState("");
+  const [status, setStatus] = useState("");
 
-  // ethereum wallet connect, this works
+  const connectWalletPressed = async () => {
+    const walletResponse = await connectWallet();
+    setStatus(walletResponse.status);
+    setWallet(walletResponse.address);
+  };
+
+  const getCurrentWalletConnected = async () => {
+    const addressArray = await window.ethereum.request({
+      method: "eth_accounts",
+    });
+    const obj = {
+      status: "",
+      address: addressArray[0],
+    };
+    return obj;
+  };
+
   const connectWallet = async () => {
-    try {
-      if (ethereum) {
-        const accounts = await ethereum.request({
+    if (window.ethereum) {
+      try {
+        const addressArray = await window.ethereum.request({
           method: "eth_requestAccounts",
         });
-        // get the address of the user
-        const address = await signer.getAddress();
-        // check if the user is already connected
-        if (address === accounts[0]) {
-          console.log("Already connected");
-          return true;
-        }
-        // connect the user
-        await signer.getAddress();
-        console.log("Connected");
-        return true;
+        const obj = {
+          status: "",
+          address: addressArray[0],
+        };
+        return obj;
+      } catch (err) {
+        return {
+          address: "",
+          status: "😥 " + err.message,
+        };
       }
-    } catch (error) {
-      console.log(error.message);
-      return false;
+    } else {
+      return {
+        address: "",
+        status: (
+          <span>
+            <p>
+              {" "}
+              🦊{" "}
+              <a target="_blank" href={`https://metamask.io/download.html`}>
+                You must install Metamask, a virtual Ethereum wallet, in your
+                browser.
+              </a>
+            </p>
+          </span>
+        ),
+      };
     }
   };
 
+  const addWalletListener = () => {
+    if (window.ethereum) {
+      window.ethereum.on("accountsChanged", (accounts) => {
+        if (accounts.length > 0) {
+          setWallet(accounts[0]);
+          setStatus("👆🏽 Write a message in the text-field above.");
+        } else {
+          setWallet("");
+          setStatus("🦊 Connect to Metamask using the top right button.");
+        }
+      });
+    } else {
+      setStatus(
+        <p>
+          {" "}
+          🦊{" "}
+          <a target="_blank" href={`https://metamask.io/download.html`}>
+            You must install Metamask, a virtual Ethereum wallet, in your
+            browser.
+          </a>
+        </p>
+      );
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const { address, status } = await getCurrentWalletConnected();
+      setWallet(address);
+      setStatus(status);
+      addWalletListener();
+    })();
+  }, []);
+
   return (
-    
     <div className="relative">
       <div className="z-100 fixed top-0 w-screen flex md:justify-center justify-between items-center p-4 gradient-bg-navbar">
         <div className="md:flex-[0.75] flex-initial justify-center items-center">
@@ -55,9 +112,16 @@ const Navbar = () => {
           ))}
           <button
             className="bg- eth-card py-2 px-7 mx-4 rounded-full shadow-[#4dfad7] shadow-lg cursor-pointer hover:bg-[#6ff2f0]"
-            onClick={connectWallet}
+            onClick={connectWalletPressed}
           >
-            Connect
+            {walletAddress.length > 0 ? (
+              "Connected: " +
+              String(walletAddress).substring(0, 6) +
+              "..." +
+              String(walletAddress).substring(38)
+            ) : (
+              <span>Connect Wallet</span>
+            )}
           </button>
         </ul>
 
@@ -93,9 +157,16 @@ const Navbar = () => {
               ))}
               <button
                 className="md:flex bg- eth-card py-2 px-7 mx-4 rounded-full shadow-[#4dfad7] shadow-lg cursor-pointer hover:bg-[#6ff2f0]"
-                onClick={connectWallet}
+                onClick={connectWalletPressed}
               >
-                Connect
+                {walletAddress.length > 0 ? (
+                  "Connected: " +
+                  String(walletAddress).substring(0, 6) +
+                  "..." +
+                  String(walletAddress).substring(38)
+                ) : (
+                  <span>Connect Wallet</span>
+                )}
               </button>
             </ul>
           )}
