@@ -24,3 +24,8 @@
 
 ### Responsive design, footer section, hidden menu
 ![Screen Shot 2022-07-05 at 12 24 53 AM](https://user-images.githubusercontent.com/104662990/177263388-0c3501eb-90e9-48cb-b2bb-9c2263392f73.png)
+
+### Added wallet listener, and able to get current wallet after page refresh
+![Screen Shot 2022-07-05 at 6 16 50 PM](https://user-images.githubusercontent.com/104662990/177437102-866bcdff-6173-4e12-a332-6e5b72adf5a5.png)
+
+
