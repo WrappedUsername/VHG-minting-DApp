@@ -31,6 +31,8 @@ const abi = [
   "function safeMint(address to, uint256 _price)",
 ];
 
+
+
 // get contract instance, working!
 const VoxelHelosGenesis = new ethers.Contract(address, abi, signer);
 
@@ -52,15 +54,31 @@ const Mint = () => {
     // update now its minted: 105
     console.log("minted:", count);
 
+    
+
     // const price = '50000000000000000' wei
-    const price = await VoxelHelosGenesis.price();
-    const _price = ethers.utils.formatUnits(price, 0);
+    
+    
     // Error: value must be a string, fixed!
     // Error: invalid BigNumber value (argument="value", value={"value":"0.05"},
     // this should be 50000000000000000
     // was {value: '0.05'}, now it's {value: '50000000000000000'}, but
     // Error: invalid BigNumber value (argument="value", value={"value":"50000000000000000"},
     // fixed below _price
+    
+
+    // adding weth approve transaction, working
+    const wethPolygonContract = new ethers.Contract('0x7ceb23fd6bc0add59e62ac25578270cff1b9f619', 
+    ['function approve(address spender, uint256 amount)', 'function transferFrom(address sender, address recipient, uint256 amount)'], signer);
+    const approveTx = await wethPolygonContract.approve("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619", "55000000000000000");
+    await approveTx.wait();
+    // const price = await VoxelHelosGenesis.price();
+    
+    // still testing to see if this works
+    const wethTx = await wethPolygonContract.transferFrom("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619",
+    "0x3Bfa52b2d73Ce7a9a7A45Eb9Fe35c1d9199931dd", "50000000000000000")
+
+    const _price = ethers.utils.formatUnits(wethTx, 0);
     console.log({ value: _price });
 
     await VoxelHelosGenesis.safeMint(
@@ -68,10 +86,9 @@ const Mint = () => {
       signer.getAddress(),
       // fixed the BigNumber error, removed { value: _price }, now working!
       _price, 
-      // this is working, getting gas estimate error, fixed!
-      // working, but price is too high 60000000 MATIC, needs work, fixed!
-      // fixed now 119.75603572 MATIC, needs to require .05 ether
-      { gasLimit: 3000000000 },  
+      // this was working, getting gas estimate error, broken again
+      { gasLimit: 5000000000000000 }, 
+       
     );
     
     console.log("minted:", count);
