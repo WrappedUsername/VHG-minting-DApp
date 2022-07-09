@@ -2,6 +2,10 @@
 ## NFT minting DApp for Voxel Helos Genesis project.
 ### Very close to finished! Just a few more things to do!
 
+### I just got the most important function fixed! .05 WETH added to mint!
+![Screen Shot 2022-07-08 at 9 47 50 PM](https://user-images.githubusercontent.com/104662990/178090625-52268a5f-c0cd-4638-a6af-ec2844b39a40.png)
+
+
 ### Roadmap and Footer sections
 ![Screen Shot 2022-07-05 at 12 02 29 AM](https://user-images.githubusercontent.com/104662990/177260079-4c1ab0dd-a049-440f-8b76-fd9f9f312c93.png)
 
