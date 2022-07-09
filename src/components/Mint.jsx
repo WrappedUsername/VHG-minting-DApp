@@ -69,16 +69,22 @@ const Mint = () => {
 
     // adding weth approve transaction, working
     const wethPolygonContract = new ethers.Contract('0x7ceb23fd6bc0add59e62ac25578270cff1b9f619', 
-    ['function approve(address spender, uint256 amount)', 'function transferFrom(address sender, address recipient, uint256 amount)'], signer);
-    const approveTx = await wethPolygonContract.approve("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619", "55000000000000000");
-    await approveTx.wait();
+    ['function approve(address spender, uint256 amount)', 
+    'function transferFrom(address sender, address recipient, uint256 amount)'], signer);
+    //const approveTx = await wethPolygonContract.approve("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619", "50000000000000000");
+    //await approveTx.wait();
     // const price = await VoxelHelosGenesis.price();
     
-    // still testing to see if this works
-    const wethTx = await wethPolygonContract.transferFrom("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619",
-    "0x3Bfa52b2d73Ce7a9a7A45Eb9Fe35c1d9199931dd", "50000000000000000")
+    // Works!
+    const wethTx = await wethPolygonContract.transferFrom(
+    "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619",
+    "0x3Bfa52b2d73Ce7a9a7A45Eb9Fe35c1d9199931dd", 
+    "50000000000000000",
+    { gasLimit: 3000000 });
+    
+    await wethTx.wait();
 
-    const _price = ethers.utils.formatUnits(wethTx, 0);
+    const _price = ethers.utils.formatUnits(wethTx);
     console.log({ value: _price });
 
     await VoxelHelosGenesis.safeMint(
@@ -86,8 +92,8 @@ const Mint = () => {
       signer.getAddress(),
       // fixed the BigNumber error, removed { value: _price }, now working!
       _price, 
-      // this was working, getting gas estimate error, broken again
-      { gasLimit: 5000000000000000 }, 
+      // this is working
+      { gasLimit: 3000000 }, 
        
     );
     
