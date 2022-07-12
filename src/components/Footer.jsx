@@ -24,8 +24,8 @@ const Footer = () => {
         </div>
 
         <p className="text-white flex text-sm justify-center items-center text-gradient my-4">
-          &copy; {new Date().getFullYear()} Voxel Helos Genesis. All Rights
-          Reserved.
+          &copy; {new Date().getFullYear()} Voxel Helos. All rights
+          reserved.
         </p>
 
         <ul className="text-white md:flex flex-[0.75] hidden text-lg justify-center items-center text-gradient-footer my-4">
@@ -35,21 +35,21 @@ const Footer = () => {
         </ul>
 
         <a
-          href={discordLink} // Working!
+          href={discordLink} // Working
           className="text-white md:flex flex-[0.10] text-2xl justify-center items-center my-4 cursor-pointer"
         >
           <FaDiscord icon="FaDiscord" />
         </a>
 
         <a
-          href={githubLink} // Working!
+          href={githubLink} // Working
           className="text-white md:flex flex-[0.20] text-2xl justify-center items-center my-4 cursor-pointer"
         >
           <FaGithub icon="FaGithub" />
         </a>
 
-        <a
-          href="https://opensea.io/collection/voxel-helos-genesis" // Working!
+        <a // Update this when deployed to ethereum mainnet.
+          href="" // Working.
           // size does not change when md:text-sm applied or removed, very large on small screens :(
           className="md:flex flex-[0.15] justify-center items-center my-4 cursor-pointer"
         >

@@ -6,7 +6,7 @@ const About = () => {
     <div className="flex w-full justify-center items-center gradient-bg-about">
       <div className="flex flex-col items-center justify-between md:p-20 py-12 px-4">
         <p className="text-3xl text-white break-words text-gradient mb-10">
-          Meet the team! Currently Voxel Helos Genesis is a one person project.
+          Meet the team! Currently Voxel Helos is a one person project.
         </p>
 
         <figure className="md:flex rounded-xl p-8 md:p-0 ">
@@ -46,7 +46,7 @@ const About = () => {
         </figure>
 
         <p className="text-lg text-white break-words  mt-10">
-          Voxel Helos Genesis began from a one-of-one art piece I created for my
+          Voxel Helos began from a one-of-one art piece I created for my
           other NFT project Voxel Jets. I think DAO's are a great idea, and
           staking rewards are very nice indeed! So my plan for this project is
           to create a staking contract that rewards a governance token to be

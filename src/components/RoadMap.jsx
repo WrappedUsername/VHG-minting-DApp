@@ -7,15 +7,15 @@ const RoadMap = () => (
       <div className="flex flex-col border-l border-gray-100">
         <li className="mb-10 ml-4">
           <time className="mb-1 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">
-            June 2022
+            Q3 2022
           </time>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            Voxel Helos Genesis smart contract deployed to Polygon mainnet.
+            Voxel Helos smart contract deployed to ethereum mainnet.
           </h3>
           <p
             className="mb-4 text-base font-normal break-words text-gray-500 dark:text-gray-400">
-            Voxel Helos Genesis smart contract deployed to Polygon mainnet. I used REMIX IDE to 
-            compile and deploy, but I ended up using VS Code and Hardhat to verify the smart contract.
+            Voxel Helos smart contract deployed to ethereum mainnet. I like to use REMIX IDE to 
+            compile, deploy, and verify the smart contract.
           </p>
         </li>
         <li className="mb-10 ml-4">
@@ -35,7 +35,7 @@ const RoadMap = () => (
             Q4 2022 - Q1 2023
           </time>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
-            NFT staking smart contract for Voxel Helos Genesis HODLers.
+            NFT staking smart contract for all Voxel Helos HODLers.
           </h3>
           <p className="text-base font-normal break-words text-gray-500 dark:text-gray-400">
             I will create the NFT staking contract and update this DApp to include staking
@@ -63,7 +63,7 @@ const RoadMap = () => (
           </h3>
           <p className="text-base font-normal break-words text-gray-500 dark:text-gray-400">
             If I can make Voxel Helos into in game assets I would think the best bet would be to airdrop
-            these assets to whoever is HODLing Voxel Helos Genesis.
+            these assets to whoever is HODLing any Voxel Helos. The DAO would vote on the proposal.
           </p>
         </li>
       </div>

@@ -5,12 +5,12 @@ import { ethers } from "ethers";
 import { address, scanLink } from "../context/constants";
 import { shortenAddress } from "../utils/shortenAddress";
 
-// web3 provider, working!
+// web3 provider, working.
 const { ethereum } = window;
 const provider = new ethers.providers.Web3Provider(ethereum);
 const signer = provider.getSigner();
 
-// contract abi, working now!
+// contract abi, working. Update when deployed to ethereum mainnet
 const abi = [
   // solidity json abi
   {
@@ -31,9 +31,7 @@ const abi = [
   "function safeMint(address to, uint256 _price)",
 ];
 
-
-
-// get contract instance, working!
+// get contract instance, working.
 const VoxelHelosGenesis = new ethers.Contract(address, abi, signer);
 
 // mint component
@@ -46,7 +44,6 @@ const Mint = () => {
 
   // mint function, working!
   const mintNFT = async () => {
-
     const tokenIdCounter = await VoxelHelosGenesis._tokenIdCounter();
     const count = ethers.utils.formatUnits(tokenIdCounter, 0);
     // tested this log, its close needs work, this should be minted: 105, fixed!
@@ -54,49 +51,54 @@ const Mint = () => {
     // update now its minted: 105
     console.log("minted:", count);
 
-    
-
-    // const price = '50000000000000000' wei
-    
-    
+    // No longer needed WETH transferFrom or approve, but good to know.
+    /*
+    const wethPolygonContract = new ethers.Contract('0x7ceb23fd6bc0add59e62ac25578270cff1b9f619', 
+    ['function approve(address spender, uint256 amount)', 
+    'function transferFrom(address sender, address recipient, uint256 amount)'], signer);
+    */
+    /*
+    const approveTx = await wethPolygonContract.approve("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619", 
+    "50000000000000000");
+    await approveTx.wait();
+    */
+    // WETH in mint function, must be specified in smart contract.
+    /*
+    const wethTx = await wethPolygonContract.transferFrom(
+    "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619",
+    "0x3Bfa52b2d73Ce7a9a7A45Eb9Fe35c1d9199931dd", 
+    "50000000000000000",
+    { gasLimit: 3000000 });
+    await wethTx.wait();
+    const _price = ethers.utils.formatUnits(wethTx);
+    console.log({ value: _price });
+    await VoxelHelosGenesis.safeMint(
+      signer.getAddress(),
+      _price, 
+      { gasLimit: 3000000 }, 
+    );
+    console.log("minted:", count);
+    };
+    */
     // Error: value must be a string, fixed!
     // Error: invalid BigNumber value (argument="value", value={"value":"0.05"},
     // this should be 50000000000000000
     // was {value: '0.05'}, now it's {value: '50000000000000000'}, but
     // Error: invalid BigNumber value (argument="value", value={"value":"50000000000000000"},
     // fixed below _price
-    
 
-    // adding weth approve transaction, working
-    const wethPolygonContract = new ethers.Contract('0x7ceb23fd6bc0add59e62ac25578270cff1b9f619', 
-    ['function approve(address spender, uint256 amount)', 
-    'function transferFrom(address sender, address recipient, uint256 amount)'], signer);
-    //const approveTx = await wethPolygonContract.approve("0x7ceb23fd6bc0add59e62ac25578270cff1b9f619", "50000000000000000");
-    //await approveTx.wait();
-    // const price = await VoxelHelosGenesis.price();
-    
-    // Works!
-    const wethTx = await wethPolygonContract.transferFrom(
-    "0x7ceb23fd6bc0add59e62ac25578270cff1b9f619",
-    "0x3Bfa52b2d73Ce7a9a7A45Eb9Fe35c1d9199931dd", 
-    "50000000000000000",
-    { gasLimit: 3000000 });
-    
-    await wethTx.wait();
-
-    const _price = ethers.utils.formatUnits(wethTx);
+    // Price in ethereum.
+    const price = await VoxelHelosGenesis.price();
+    const _price = ethers.utils.formatUnits(price);
     console.log({ value: _price });
 
     await VoxelHelosGenesis.safeMint(
-      
       signer.getAddress(),
-      // fixed the BigNumber error, removed { value: _price }, now working!
-      _price, 
+      // fixed the BigNumber error, removed { value: _price }, now working.
+      _price,
       // this is working
-      { gasLimit: 3000000 }, 
-       
+      { gasLimit: 3000000 }
     );
-    
     console.log("minted:", count);
   };
 
@@ -106,7 +108,7 @@ const Mint = () => {
         <div className=" flex flex-col flex-1 items-center justify-start w-full mf:mt-0 mt-10 ">
           <img src={cabin} alt="cabin" className="w-100" />
           <p className="text-3xl text-white break-words text-gradient">
-            Voxel Helos Genesis, cabin and fuselage layers added to the
+            Voxel Helos, cabin and fuselage layers added to the
             background layer to complete the NFT.
           </p>
         </div>
@@ -128,11 +130,14 @@ const Mint = () => {
                   className="w-48 mr-1 rounded-xl shadow-[#4dfad7] shadow-lg"
                 />
               </div>
-              <a href={scanLink} className="text-white font-light ml-1 text-sm w-1/4">
+              <a
+                href={scanLink}
+                className="text-white font-light ml-1 text-sm w-1/4"
+              >
                 {shortenAddress(address)}
               </a>
               <p className="text-white font-semibold text-lg ml-1 mb-2 w-1/4">
-                Polygon
+                ethereum
               </p>
             </div>
           </div>
